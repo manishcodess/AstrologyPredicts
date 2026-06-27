@@ -155,8 +155,20 @@ form.addEventListener('submit',(event)=>{
     index = (Day*Month*Year)%20;
     const sixth_message = predictions[index];
     
-    result.innerText = `${first_message} ${second_message} ${third_message} ${fourth_message} Our Reccomendation for you: ${fifth_message} Your Future Prediction is: ${sixth_message}`;
-
+    result.innerHTML = `
+        <div class="reveal-content">
+            <h3>${first_message}</h3>
+            <div class="zodiac-badge">Zodiac: ${zodiacSigns[Month-1]}</div>
+            <p><strong>Truth:</strong> ${third_message} ${fourth_message}</p>
+            <p><strong>Guidance:</strong> ${fifth_message}</p>
+            <p><strong>Prophecy:</strong> ${sixth_message}</p>
+        </div>
+    `;
+    
+    // Retrigger animation
+    result.classList.remove('show');
+    void result.offsetWidth;
+    result.classList.add('show');
 })
 
 
